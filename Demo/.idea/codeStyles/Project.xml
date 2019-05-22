@@ -1,0 +1,8 @@
+<component name="ProjectCodeStyleConfiguration">
+  <code_scheme name="Project" version="173">
+    <codeStyleSettings language="JAVA">
+      <option name="SPACE_AFTER_COMMA" value="false" />
+      <option name="SPACE_BEFORE_TYPE_PARAMETER_LIST" value="true" />
+    </codeStyleSettings>
+  </code_scheme>
+</component>

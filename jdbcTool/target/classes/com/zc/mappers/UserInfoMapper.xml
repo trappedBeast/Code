@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zc.mappers.UserInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.zc.entity.UserInfo" >
+    <id column="USER_NO" property="userNo" jdbcType="VARCHAR" />
+    <result column="USER_NAME" property="userName" jdbcType="VARCHAR" />
+    <result column="USER_TYPE" property="userType" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    USER_NO, USER_NAME, USER_TYPE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from user_info
+    where USER_NO = #{userNo,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from user_info
+    where USER_NO = #{userNo,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.zc.entity.UserInfo" >
+    insert into user_info (USER_NO, USER_NAME, USER_TYPE
+      )
+    values (#{userNo,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, #{userType,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zc.entity.UserInfo" >
+    insert into user_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userNo != null" >
+        USER_NO,
+      </if>
+      <if test="userName != null" >
+        USER_NAME,
+      </if>
+      <if test="userType != null" >
+        USER_TYPE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userNo != null" >
+        #{userNo,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userType != null" >
+        #{userType,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zc.entity.UserInfo" >
+    update user_info
+    <set >
+      <if test="userName != null" >
+        USER_NAME = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userType != null" >
+        USER_TYPE = #{userType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where USER_NO = #{userNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zc.entity.UserInfo" >
+    update user_info
+    set USER_NAME = #{userName,jdbcType=VARCHAR},
+      USER_TYPE = #{userType,jdbcType=VARCHAR}
+    where USER_NO = #{userNo,jdbcType=VARCHAR}
+  </update>
+</mapper>
